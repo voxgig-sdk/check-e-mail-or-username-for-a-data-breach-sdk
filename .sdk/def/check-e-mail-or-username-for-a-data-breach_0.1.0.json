@@ -1,0 +1,192 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "LeakCheck Public API",
+    "description": "LeakCheck is a service that enables users and companies to ascertain whether their credentials have been compromised. By utilising this API, users can ascertain whether their email address or username has been involved in any data breach.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "LeakCheck API Documentation",
+      "url": "https://wiki.leakcheck.io/en/api/public"
+    },
+    "termsOfService": "https://wiki.leakcheck.io/en/api/public"
+  },
+  "servers": [
+    {
+      "url": "https://leakcheck.io/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/public": {
+      "get": {
+        "summary": "Check for data breach",
+        "description": "Check if an email address, username, or email hash has been involved in any data breach. The search type is detected automatically based on the input format.",
+        "operationId": "checkDataBreach",
+        "tags": [
+          "Data Breach Check"
+        ],
+        "parameters": [
+          {
+            "name": "check",
+            "in": "query",
+            "description": "The value to check for data breaches. Can be:\n- Email address (e.g., example@example.com)\n- Username (minimum 3 characters)\n- Email hash (SHA256, truncated to 24 characters, e.g., 31c5543c1734d25c7206f5fd)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 3,
+              "examples": [
+                "example@example.com",
+                "31c5543c1734d25c7206f5fd",
+                "username123"
+              ]
+            },
+            "example": "example@example.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates whether the request was successful"
+                    },
+                    "found": {
+                      "type": "integer",
+                      "description": "Number of data breaches found containing the searched credential",
+                      "minimum": 0
+                    },
+                    "fields": {
+                      "type": "array",
+                      "description": "List of data fields that were compromised in the breaches",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "sources": {
+                      "type": "array",
+                      "description": "List of data breach sources where the credential was found",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the breached service or database"
+                          },
+                          "date": {
+                            "type": "string",
+                            "description": "Date of the breach in YYYY-MM format",
+                            "pattern": "^\\d{4}-\\d{2}$"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "date"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "found"
+                  ]
+                },
+                "examples": {
+                  "foundBreaches": {
+                    "summary": "Credential found in breaches",
+                    "value": {
+                      "success": true,
+                      "found": 3,
+                      "fields": [
+                        "username",
+                        "first_name",
+                        "address"
+                      ],
+                      "sources": [
+                        {
+                          "name": "Evony.com",
+                          "date": "2016-07"
+                        },
+                        {
+                          "name": "I-Dressup.com",
+                          "date": "2016-08"
+                        },
+                        {
+                          "name": "Zynga.com",
+                          "date": "2019-09"
+                        }
+                      ]
+                    }
+                  },
+                  "noBreaches": {
+                    "summary": "No breaches found",
+                    "value": {
+                      "success": true,
+                      "found": 0,
+                      "fields": [],
+                      "sources": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid input format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Error message describing what went wrong"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Data Breach Check",
+      "description": "Operations for checking if credentials have been compromised in data breaches"
+    }
+  ],
+  "externalDocs": {
+    "description": "Full API Documentation",
+    "url": "https://wiki.leakcheck.io/en/api/public"
+  }
+}

@@ -1,0 +1,25 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "LeakCheck API Documentation"
+        url: "https://wiki.leakcheck.io/en/api/public"
+      }
+      description: "LeakCheck is a service that enables users and companies to ascertain whether their credentials have been compromised. By utilising this API, users can ascertain whether their email address or username has been involved in any data breach."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://leakcheck.io/api"
+        }
+      ]
+      termsOfService: "https://wiki.leakcheck.io/en/api/public"
+      title: "LeakCheck Public API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

@@ -1,0 +1,59 @@
+# Entity: data_breach_check
+
+main: kit: entity: data_breach_check: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "date"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "data_breach_check"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "example@example.com"
+                kind: "query"
+                name: "check"
+                orig: "check"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/public"
+          parts: [
+            "public"
+          ]
+          select: {
+            exist: [
+              "check"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
