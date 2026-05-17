@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/core"
+	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/core"
 )
 
 type LogFeature struct {

@@ -173,6 +173,9 @@
             },
             "rb": {
               "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
             }
           }
         }
@@ -206,6 +209,33 @@
         }
       },
       "target": {
+        "go-cli": {
+          "title": "Go CLI",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "check-e-mail-or-username-for-a-data-breach"
+          },
+          "phase": {
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "deps": {},
+          "name": "go-cli",
+          "active": true
+        },
         "ts": {
           "title": "TypeScript",
           "ext": "ts",
@@ -246,14 +276,7 @@
             "name": "check-e-mail-or-username-for-a-data-breach"
           },
           "srcfeature": false,
-          "deps": {
-            "github.com/voxgig/struct": {
-              "active": true,
-              "version": "v0.0.0",
-              "replace": "./utility/struct",
-              "kind": "prod"
-            }
-          },
+          "deps": {},
           "name": "go",
           "active": true
         },
@@ -341,15 +364,6 @@
     },
     "def": {
       "desc": ""
-    },
-    "api": {
-      "guide": {},
-      "entity": {}
     }
-  },
-  "name__orig": "check-e-mail-or-username-for-a-data-breach",
-  "Name": "CheckEMailOrUsernameForADataBreach",
-  "name_": "check_e_mail_or_username_for_a_data_breach",
-  "name-": "check-e-mail-or-username-for-a-data-breach",
-  "NAME": "CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH"
+  }
 }

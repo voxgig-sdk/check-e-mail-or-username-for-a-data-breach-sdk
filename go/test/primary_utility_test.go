@@ -4,9 +4,9 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk"
+	sdk "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/utility/struct"
 )
 
 func TestPrimaryUtility(t *testing.T) {

@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/core"
+	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/utility/struct"
 )
 
 type DataBreachCheckEntity struct {

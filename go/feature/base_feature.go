@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/core"
+	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/core"
 )
 
 type BaseFeature struct {

@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/core"
+import "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/core"
 
 func prepareBodyUtil(ctx *core.Context) any {
 	op := ctx.Op

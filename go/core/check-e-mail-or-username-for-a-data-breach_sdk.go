@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/utility/struct"
 )
 
 type CheckEMailOrUsernameForADataBreachSDK struct {

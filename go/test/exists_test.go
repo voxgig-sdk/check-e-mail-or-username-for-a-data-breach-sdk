@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk"
+	sdk "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go"
 )
 
 func TestExists(t *testing.T) {

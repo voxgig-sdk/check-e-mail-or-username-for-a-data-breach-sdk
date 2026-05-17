@@ -1,10 +1,10 @@
 package voxgigcheckemailorusernameforadatabreachsdk
 
 import (
-	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/core"
-	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/entity"
-	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/feature"
-	_ "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/utility"
+	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/core"
+	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/entity"
+	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/feature"
+	_ "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

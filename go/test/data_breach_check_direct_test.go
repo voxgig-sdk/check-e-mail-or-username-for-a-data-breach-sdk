@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk"
-	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/core"
+	sdk "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go"
+	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/core"
 )
 
 func TestDataBreachCheckDirect(t *testing.T) {

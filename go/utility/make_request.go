@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/core"
+import "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/core"
 
 func makeRequestUtil(ctx *core.Context) (*core.Response, error) {
 	if ctx.Out["request"] != nil {

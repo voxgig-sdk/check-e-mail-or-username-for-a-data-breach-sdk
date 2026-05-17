@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/core"
+	"github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

@@ -6,7 +6,7 @@ package sdktest
 import (
 	"fmt"
 
-	voxgigstruct "github.com/voxgig/struct"
+	voxgigstruct "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/utility/struct"
 
 	"encoding/json"
 	"errors"
