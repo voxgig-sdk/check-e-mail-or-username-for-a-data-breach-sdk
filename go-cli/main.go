@@ -11,8 +11,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/aql-lang/aql/eng"
-	"github.com/aql-lang/aql/eng/parser"
+	eng "github.com/aql-lang/aql/eng/go"
+	"github.com/aql-lang/aql/eng/go/parser"
 	sdk "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go"
 )
 
