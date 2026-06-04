@@ -92,7 +92,6 @@ function data_breach_check_basic_setup(extra)
     ["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID"] = idmap,
     ["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] = "FALSE",
     ["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_EXPLAIN"] = "FALSE",
-    ["CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function data_breach_check_basic_setup(extra)
   if env["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"],
       },
       extra or {},
     })

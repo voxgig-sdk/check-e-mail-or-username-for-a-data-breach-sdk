@@ -18,8 +18,30 @@ main: {
       termsOfService: "https://wiki.leakcheck.io/en/api/public"
       title: "LeakCheck Public API"
       version: "1.0.0"
+      tagline: "Check whether an email address, username, or hashed email appears in known data breaches"
+      homepage: "https://leakcheck.io/"
+      docs_url: "https://wiki.leakcheck.io/en/api/public"
+      license_short: "Free public endpoint; attribution required (\"Powered by LeakCheck\" link or affiliate link)"
+      license_md: `- Free public endpoint operated by LeakCheck
+- Implementations must display a "Powered by LeakCheck" attribution link (affiliate links are accepted as an alternative)
+- See the [LeakCheck API wiki](https://wiki.leakcheck.io/en/api/public) for terms
+- Rate limits and other usage policies are not formally documented`
+      about_md: `[LeakCheck](https://leakcheck.io/) is a credential-exposure lookup service. Its public API lets you query whether a given email address, username, or truncated SHA256 hash of an email has been seen in a documented breach corpus.
+
+What you get from the API:
+- A single \`GET\` against \`/api/public?check=<value>\` returns a JSON object
+- \`success\` — boolean indicating whether the query was processed
+- \`found\` — number of breach records matched
+- \`fields\` — array of exposed data categories (e.g. password, ip, name)
+- \`sources\` — array of breach records, each with a \`name\` and \`date\`
+
+The \`check\` parameter accepts three input types and the search type is detected automatically: a full email address, a SHA256 hash truncated to 24 characters, or a username (minimum 3 characters).
+
+Operational notes: the public endpoint does not require an API key. CORS is disabled, so calls must be made server-side. Any site or tool that uses the API must include a "Powered by LeakCheck" attribution link.`
+      entity_desc: {
+        data_breach_check: "A lookup against the breach corpus for a given email, username, or truncated email hash via `GET /api/public?check=<value>`, returning the number of matches, exposed field categories, and the list of source breaches."
+      }
+      auth: false
     }
   }
-}
-
 }

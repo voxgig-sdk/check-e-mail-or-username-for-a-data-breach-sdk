@@ -61,14 +61,12 @@ def _data_breach_check_direct_setup(mockres):
     env = runner.env_override({
         "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID": {},
         "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE": "FALSE",
-        "CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY": "NONE",
     })
 
     live = env.get("CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"),
         }
         client = CheckEMailOrUsernameForADataBreachSDK(merged_opts)
         return {

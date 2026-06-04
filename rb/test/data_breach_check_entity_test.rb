@@ -83,7 +83,6 @@ def data_breach_check_basic_setup(extra)
     "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID" => idmap,
     "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE" => "FALSE",
     "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_EXPLAIN" => "FALSE",
-    "CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +94,6 @@ def data_breach_check_basic_setup(extra)
   if env["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"],
       },
       extra || {},
     ])

@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from checkemailorusernameforadatabreach_sdk import CheckEMailOrUsernameForADataBreachSDK
 
-client = CheckEMailOrUsernameForADataBreachSDK({
-    "apikey": os.environ.get("CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY"),
-})
+client = CheckEMailOrUsernameForADataBreachSDK({})
 ```
 
 ### 2. List databreachchecks
@@ -121,7 +118,6 @@ Create a `.env.local` file at the project root:
 
 ```
 CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_TEST_LIVE=TRUE
-CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY=<your-key>
 ```
 
 Then run:
@@ -145,7 +141,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

@@ -28,16 +28,13 @@ package main
 
 import (
     "fmt"
-    "os"
 
     sdk "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go"
     "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go/core"
 )
 
 func main() {
-    client := sdk.NewCheckEMailOrUsernameForADataBreachSDK(map[string]any{
-        "apikey": os.Getenv("CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY"),
-    })
+    client := sdk.NewCheckEMailOrUsernameForADataBreachSDK(map[string]any{})
 ```
 
 ### 2. List databreachchecks
@@ -140,7 +137,6 @@ Create a `.env.local` file at the project root:
 
 ```
 CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_TEST_LIVE=TRUE
-CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY=<your-key>
 ```
 
 Then run:
@@ -162,7 +158,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `"apikey"` | `string` | API key for authentication. |
 | `"base"` | `string` | Base URL of the API server. |
 | `"prefix"` | `string` | URL path prefix prepended to all requests. |
 | `"suffix"` | `string` | URL path suffix appended to all requests. |

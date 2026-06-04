@@ -119,7 +119,6 @@ func data_breach_checkBasicSetup(extra map[string]any) *entityTestSetup {
 		"CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID": idmap,
 		"CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE":      "FALSE",
 		"CHECKEMAILORUSERNAMEFORADATABREACH_TEST_EXPLAIN":   "FALSE",
-		"CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID"])
@@ -130,7 +129,6 @@ func data_breach_checkBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"],
 			},
 			extra,
 		})

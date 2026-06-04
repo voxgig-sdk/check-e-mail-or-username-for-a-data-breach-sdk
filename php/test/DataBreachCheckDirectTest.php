@@ -68,14 +68,12 @@ function data_breach_check_direct_setup($mockres)
     $env = Runner::env_override([
         "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID" => [],
         "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE" => "FALSE",
-        "CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY" => "NONE",
     ]);
 
     $live = $env["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"],
         ];
         $client = new CheckEMailOrUsernameForADataBreachSDK($merged_opts);
         return [
