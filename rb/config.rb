@@ -15,6 +15,9 @@ module CheckEMailOrUsernameForADataBreachConfig
       },
       "options" => {
         "base" => "https://leakcheck.io/api",
+        "auth" => {
+          "prefix" => "Bearer",
+        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -26,36 +29,38 @@ module CheckEMailOrUsernameForADataBreachConfig
         "data_breach_check" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "date",
               "req" => true,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "name",
               "req" => true,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 1,
             },
           ],
           "name" => "data_breach_check",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "example" => "example@example.com",
                         "kind" => "query",
                         "name" => "check",
                         "orig" => "check",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -73,11 +78,9 @@ module CheckEMailOrUsernameForADataBreachConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
           },

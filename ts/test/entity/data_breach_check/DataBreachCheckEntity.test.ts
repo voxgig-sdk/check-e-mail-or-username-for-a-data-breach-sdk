@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_DATA_BREACH_CHECK_ENTID': idmap,
     'CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE': 'FALSE',
     'CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_EXPLAIN': 'FALSE',
+    'CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_APIKEY': 'NONE',
   })
 
   idmap = env['CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_DATA_BREACH_CHECK_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new CheckEMailOrUsernameForADataBreachSDK(merge([
       {
+        apikey: env.CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_APIKEY,
       },
       extra
     ]))

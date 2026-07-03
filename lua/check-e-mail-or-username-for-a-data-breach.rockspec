@@ -1,7 +1,11 @@
 package = "voxgig-sdk-check-e-mail-or-username-for-a-data-breach"
-version = "0.0-1"
+version = "0.0.1-1"
 source = {
-  url = "git://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk.git"
+  -- git+https (GitHub dropped git:// in 2022); pin the install to the release
+  -- tag pushed by `make publish`, and point at the lua/ subdir of the monorepo.
+  url = "git+https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk.git",
+  tag = "lua/v0.0.1",
+  dir = "check-e-mail-or-username-for-a-data-breach-sdk/lua"
 }
 description = {
   summary = "CheckEMailOrUsernameForADataBreach SDK for Lua",

@@ -1,23 +1,8 @@
 # CheckEMailOrUsernameForADataBreach SDK
 
-Check whether an email address, username, or hashed email appears in known data breaches
+LeakCheck Public API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About LeakCheck Public API
-
-[LeakCheck](https://leakcheck.io/) is a credential-exposure lookup service. Its public API lets you query whether a given email address, username, or truncated SHA256 hash of an email has been seen in a documented breach corpus.
-
-What you get from the API:
-- A single `GET` against `/api/public?check=<value>` returns a JSON object
-- `success` — boolean indicating whether the query was processed
-- `found` — number of breach records matched
-- `fields` — array of exposed data categories (e.g. password, ip, name)
-- `sources` — array of breach records, each with a `name` and `date`
-
-The `check` parameter accepts three input types and the search type is detected automatically: a full email address, a SHA256 hash truncated to 24 characters, or a username (minimum 3 characters).
-
-Operational notes: the public endpoint does not require an API key. CORS is disabled, so calls must be made server-side. Any site or tool that uses the API must include a "Powered by LeakCheck" attribution link.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install check-e-mail-or-username-for-a-data-breach-sdk
 luarocks install check-e-mail-or-username-for-a-data-breach-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { CheckEMailOrUsernameForADataBreachSDK } from 'check-e-mail-or-username-for-a-data-breach'
 
-const client = new CheckEMailOrUsernameForADataBreachSDK({})
+const client = new CheckEMailOrUsernameForADataBreachSDK({
+  apikey: process.env.CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY,
+})
 
 // List all databreachchecks
 const databreachchecks = await client.DataBreachCheck().list()
+console.log(databreachchecks.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **DataBreachCheck** | A lookup against the breach corpus for a given email, username, or truncated email hash via `GET /api/public?check=<value>`, returning the number of matches, exposed field categories, and the list of source breaches. | `/public` |
+| **DataBreachCheck** |  | `/public` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -113,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from checkemailorusernameforadatabreach_sdk import CheckEMailOrUsernameForADataBreachSDK
 
-client = CheckEMailOrUsernameForADataBreachSDK({})
+client = CheckEMailOrUsernameForADataBreachSDK({
+    "apikey": os.environ.get("CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY"),
+})
 
 # List all databreachchecks
-databreachchecks, err = client.DataBreachCheck(None).list(None, None)
+databreachchecks, err = client.DataBreachCheck().list()
+print(databreachchecks)
 ```
 
 ### PHP
@@ -127,10 +118,13 @@ databreachchecks, err = client.DataBreachCheck(None).list(None, None)
 <?php
 require_once 'checkemailorusernameforadatabreach_sdk.php';
 
-$client = new CheckEMailOrUsernameForADataBreachSDK([]);
+$client = new CheckEMailOrUsernameForADataBreachSDK([
+    "apikey" => getenv("CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY"),
+]);
 
 // List all databreachchecks
-[$databreachchecks, $err] = $client->DataBreachCheck(null)->list(null, null);
+[$databreachchecks, $err] = $client->DataBreachCheck()->list();
+print_r($databreachchecks);
 ```
 
 ### Golang
@@ -138,10 +132,13 @@ $client = new CheckEMailOrUsernameForADataBreachSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go"
 
-client := sdk.NewCheckEMailOrUsernameForADataBreachSDK(map[string]any{})
+client := sdk.NewCheckEMailOrUsernameForADataBreachSDK(map[string]any{
+    "apikey": os.Getenv("CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY"),
+})
 
 // List all databreachchecks
 databreachchecks, err := client.DataBreachCheck(nil).List(nil, nil)
+fmt.Println(databreachchecks)
 ```
 
 ### Ruby
@@ -149,10 +146,13 @@ databreachchecks, err := client.DataBreachCheck(nil).List(nil, nil)
 ```ruby
 require_relative "CheckEMailOrUsernameForADataBreach_sdk"
 
-client = CheckEMailOrUsernameForADataBreachSDK.new({})
+client = CheckEMailOrUsernameForADataBreachSDK.new({
+  "apikey" => ENV["CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY"],
+})
 
 # List all databreachchecks
-databreachchecks, err = client.DataBreachCheck(nil).list(nil, nil)
+databreachchecks, err = client.DataBreachCheck().list
+puts databreachchecks
 ```
 
 ### Lua
@@ -160,10 +160,13 @@ databreachchecks, err = client.DataBreachCheck(nil).list(nil, nil)
 ```lua
 local sdk = require("check-e-mail-or-username-for-a-data-breach_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("CHECK-E-MAIL-OR-USERNAME-FOR-A-DATA-BREACH_APIKEY"),
+})
 
 -- List all databreachchecks
-local databreachchecks, err = client:DataBreachCheck(nil):list(nil, nil)
+local databreachchecks, err = client:DataBreachCheck():list()
+print(databreachchecks)
 ```
 
 ## Unit testing in offline mode
@@ -182,25 +185,21 @@ const result = await client.DataBreachCheck().load({ id: 'test01' })
 ### Python
 
 ```python
-client = CheckEMailOrUsernameForADataBreachSDK.test(None, None)
-result, err = client.DataBreachCheck(None).load(
-    {"id": "test01"}, None
-)
+client = CheckEMailOrUsernameForADataBreachSDK.test()
+result, err = client.DataBreachCheck().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = CheckEMailOrUsernameForADataBreachSDK::test(null, null);
-[$result, $err] = $client->DataBreachCheck(null)->load(
-    ["id" => "test01"], null
-);
+$client = CheckEMailOrUsernameForADataBreachSDK::test();
+[$result, $err] = $client->DataBreachCheck()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.DataBreachCheck(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -209,19 +208,15 @@ result, err := client.DataBreachCheck(nil).Load(
 ### Ruby
 
 ```ruby
-client = CheckEMailOrUsernameForADataBreachSDK.test(nil, nil)
-result, err = client.DataBreachCheck(nil).load(
-  { "id" => "test01" }, nil
-)
+client = CheckEMailOrUsernameForADataBreachSDK.test
+result, err = client.DataBreachCheck().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:DataBreachCheck(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:DataBreachCheck():load({ id = "test01" })
 ```
 
 ## How it works
@@ -325,16 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the LeakCheck Public API
-
-- Upstream: [https://leakcheck.io/](https://leakcheck.io/)
-- API docs: [https://wiki.leakcheck.io/en/api/public](https://wiki.leakcheck.io/en/api/public)
-
-- Free public endpoint operated by LeakCheck
-- Implementations must display a "Powered by LeakCheck" attribution link (affiliate links are accepted as an alternative)
-- See the [LeakCheck API wiki](https://wiki.leakcheck.io/en/api/public) for terms
-- Rate limits and other usage policies are not formally documented
 
 ---
 

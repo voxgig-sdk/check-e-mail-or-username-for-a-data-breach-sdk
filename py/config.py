@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://leakcheck.io/api",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,36 +29,38 @@ def make_config():
       "data_breach_check": {
         "fields": [
           {
+            "active": True,
             "name": "date",
             "req": True,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "name",
             "req": True,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
         ],
         "name": "data_breach_check",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": "example@example.com",
                       "kind": "query",
                       "name": "check",
                       "orig": "check",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -73,11 +78,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },

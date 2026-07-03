@@ -93,12 +93,14 @@ func data_breach_checkDirectSetup(mockres any) *data_breach_checkDirectSetupResu
 	env := envOverride(map[string]any{
 		"CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID": map[string]any{},
 		"CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE":    "FALSE",
+		"CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY":       "NONE",
 	})
 
 	live := env["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"],
 		}
 		client := sdk.NewCheckEMailOrUsernameForADataBreachSDK(mergedOpts)
 

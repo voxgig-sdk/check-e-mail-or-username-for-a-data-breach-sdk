@@ -63,12 +63,14 @@ function data_breach_check_direct_setup(mockres)
   local env = runner.env_override({
     ["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID"] = {},
     ["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] = "FALSE",
+    ["CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"] = "NONE",
   })
 
   local live = env["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
