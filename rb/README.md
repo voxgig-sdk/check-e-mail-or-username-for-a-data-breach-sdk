@@ -10,13 +10,13 @@ The Ruby SDK for the CheckEMailOrUsernameForADataBreach API — an entity-orient
 
 ## Install
 ```bash
-gem install check-e-mail-or-username-for-a-data-breach-sdk
+gem install voxgig-sdk-check-e-mail-or-username-for-a-data-breach
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "check-e-mail-or-username-for-a-data-breach-sdk"
+gem "voxgig-sdk-check-e-mail-or-username-for-a-data-breach"
 ```
 
 Then run:

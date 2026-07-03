@@ -10,7 +10,7 @@ The TypeScript SDK for the CheckEMailOrUsernameForADataBreach API — a type-saf
 
 ## Install
 ```bash
-npm install check-e-mail-or-username-for-a-data-breach
+npm install @voxgig-sdk/check-e-mail-or-username-for-a-data-breach
 ```
 ## Tutorial: your first API call
 

@@ -10,7 +10,7 @@ The PHP SDK for the CheckEMailOrUsernameForADataBreach API — an entity-oriente
 
 ## Install
 ```bash
-composer require voxgig/check-e-mail-or-username-for-a-data-breach-sdk
+composer require voxgig-sdk/check-e-mail-or-username-for-a-data-breach
 ```
 
 

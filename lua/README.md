@@ -10,7 +10,7 @@ The Lua SDK for the CheckEMailOrUsernameForADataBreach API — an entity-oriente
 
 ## Install
 ```bash
-luarocks install check-e-mail-or-username-for-a-data-breach-sdk
+luarocks install voxgig-sdk-check-e-mail-or-username-for-a-data-breach
 ```
 
 If the module is not yet published, add the source directory to

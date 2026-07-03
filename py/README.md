@@ -10,7 +10,7 @@ The Python SDK for the CheckEMailOrUsernameForADataBreach API — an entity-orie
 
 ## Install
 ```bash
-pip install check-e-mail-or-username-for-a-data-breach-sdk
+pip install voxgig-sdk-check-e-mail-or-username-for-a-data-breach
 ```
 
 Or install from source:
