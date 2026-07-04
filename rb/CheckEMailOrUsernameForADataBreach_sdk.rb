@@ -208,13 +208,7 @@ class CheckEMailOrUsernameForADataBreachSDK
   end
 
 
-  # Idiomatic facade: client.data_breach_check.list / client.data_breach_check.load({ "id" => ... })
-  def data_breach_check
-    require_relative 'entity/data_breach_check_entity'
-    @data_breach_check ||= DataBreachCheckEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.data_breach_check instead.
+  # Canonical facade: client.DataBreachCheck.list / client.DataBreachCheck.load({ "id" => ... })
   def DataBreachCheck(data = nil)
     require_relative 'entity/data_breach_check_entity'
     DataBreachCheckEntity.new(self, data)

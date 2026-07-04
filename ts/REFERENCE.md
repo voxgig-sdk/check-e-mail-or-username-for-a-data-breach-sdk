@@ -109,7 +109,7 @@ Alias for `CheckEMailOrUsernameForADataBreachSDK.test()`.
 ## DataBreachCheckEntity
 
 ```ts
-const data_breach_check = client.data_breach_check
+const data_breach_check = client.DataBreachCheck()
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ const data_breach_check = client.data_breach_check
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.data_breach_check.list()
+const results = await client.DataBreachCheck().list()
 ```
 
 ### Common Methods

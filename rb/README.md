@@ -28,16 +28,14 @@ require_relative "CheckEMailOrUsernameForADataBreach_sdk"
 client = CheckEMailOrUsernameForADataBreachSDK.new
 ```
 
-### 2. List databreachchecks
+### 2. List databreachcheck records
 
 ```ruby
 begin
-  result = client.databreachcheck.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of DataBreachCheck records — iterate directly.
+  databreachchecks = client.DataBreachCheck.list
+  databreachchecks.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = CheckEMailOrUsernameForADataBreachSDK.test
+client = CheckEMailOrUsernameForADataBreachSDK.test({
+  "entity" => { "databreachcheck" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.databreachcheck.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+databreachcheck = client.DataBreachCheck.load({ "id" => "test01" })
+puts databreachcheck
 ```
 
 ### Use a custom fetch function
@@ -224,7 +226,7 @@ API path: `/public`
 
 ### DataBreachCheck
 
-Create an instance: `const data_breach_check = client.data_breach_check`
+Create an instance: `data_breach_check = client.DataBreachCheck`
 
 #### Operations
 
@@ -241,8 +243,9 @@ Create an instance: `const data_breach_check = client.data_breach_check`
 
 #### Example: List
 
-```ts
-const data_breach_checks = await client.data_breach_check.list()
+```ruby
+# list returns an Array of DataBreachCheck records (raises on error).
+data_breach_checks = client.DataBreachCheck.list
 ```
 
 
@@ -317,7 +320,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-databreachcheck = client.databreachcheck
+databreachcheck = client.DataBreachCheck
 databreachcheck.load({ "id" => "example_id" })
 
 # databreachcheck.data_get now returns the loaded databreachcheck data

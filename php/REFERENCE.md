@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## DataBreachCheckEntity
 
 ```php
-$data_breach_check = $client->data_breach_check();
+$data_breach_check = $client->DataBreachCheck();
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ $data_breach_check = $client->data_breach_check();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->data_breach_check()->list([]);
+$results = $client->DataBreachCheck()->list([]);
 ```
 
 ### Common Methods

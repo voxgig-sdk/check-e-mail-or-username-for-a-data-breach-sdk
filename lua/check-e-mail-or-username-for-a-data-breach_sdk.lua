@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:data_breach_check():list() / client:data_breach_check():load({ id = ... })
-function CheckEMailOrUsernameForADataBreachSDK:data_breach_check(data)
+-- Idiomatic facade: client:DataBreachCheck():list() / client:DataBreachCheck():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CheckEMailOrUsernameForADataBreachSDK:DataBreachCheck(data)
   local EntityMod = require("entity.data_breach_check_entity")
   if data == nil then
     if self._data_breach_check == nil then
@@ -253,12 +254,6 @@ function CheckEMailOrUsernameForADataBreachSDK:data_breach_check(data)
     end
     return self._data_breach_check
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:data_breach_check() instead.
-function CheckEMailOrUsernameForADataBreachSDK:DataBreachCheck(data)
-  local EntityMod = require("entity.data_breach_check_entity")
   return EntityMod.new(self, data)
 end
 

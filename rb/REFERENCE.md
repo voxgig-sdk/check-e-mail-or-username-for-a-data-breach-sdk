@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## DataBreachCheckEntity
 
 ```ruby
-data_breach_check = client.data_breach_check
+data_breach_check = client.DataBreachCheck
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ data_breach_check = client.data_breach_check
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.data_breach_check.list(nil)
+results = client.DataBreachCheck.list(nil)
 ```
 
 ### Common Methods

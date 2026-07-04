@@ -220,25 +220,15 @@ class CheckEMailOrUsernameForADataBreachSDK:
         }
 
 
-    @property
-    def data_breach_check(self):
-        """Idiomatic facade: client.data_breach_check.list() / client.data_breach_check.load({"id": ...})."""
-        from entity.data_breach_check_entity import DataBreachCheckEntity
-        cached = getattr(self, "_data_breach_check", None)
-        if cached is None:
-            cached = DataBreachCheckEntity(self, None)
-            self._data_breach_check = cached
-        return cached
-
-    def DataBreachCheck(self, data=None):
-        # Deprecated: use client.data_breach_check instead.
+    def DataBreachCheck(self, data=None) -> "DataBreachCheckEntity":
+        """Entity factory: client.DataBreachCheck().list({}) / client.DataBreachCheck().load({"id": ...})."""
         from entity.data_breach_check_entity import DataBreachCheckEntity
         return DataBreachCheckEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "CheckEMailOrUsernameForADataBreachSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class CheckEMailOrUsernameForADataBreachSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.data_breach_check_entity import DataBreachCheckEntity

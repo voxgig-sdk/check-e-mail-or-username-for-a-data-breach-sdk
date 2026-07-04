@@ -233,10 +233,10 @@ class CheckEMailOrUsernameForADataBreachSDK
 
     private $_data_breach_check = null;
 
-    // Idiomatic facade: $client->data_breach_check()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias DataBreachCheck() (PHP method
-    // names are case-insensitive).
-    public function data_breach_check($data = null)
+    // Canonical facade: $client->DataBreachCheck()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->data_breach_check()
+    // resolves here too.
+    public function DataBreachCheck($data = null)
     {
         require_once __DIR__ . '/entity/data_breach_check_entity.php';
         if ($data === null) {

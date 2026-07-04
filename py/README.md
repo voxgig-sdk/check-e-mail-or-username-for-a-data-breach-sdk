@@ -31,14 +31,16 @@ from checkemailorusernameforadatabreach_sdk import CheckEMailOrUsernameForADataB
 client = CheckEMailOrUsernameForADataBreachSDK()
 ```
 
-### 2. List databreachchecks
+### 2. List databreachcheck records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.databreachcheck.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    databreachchecks = client.DataBreachCheck().list({})
+    for databreachcheck in databreachchecks:
+        print(databreachcheck)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CheckEMailOrUsernameForADataBreachSDK.test()
 
-result = client.databreachcheck.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+databreachcheck = client.DataBreachCheck().load({"id": "test01"})
+# databreachcheck contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -221,7 +224,7 @@ API path: `/public`
 
 ### DataBreachCheck
 
-Create an instance: `const data_breach_check = client.data_breach_check`
+Create an instance: `data_breach_check = client.DataBreachCheck()`
 
 #### Operations
 
@@ -238,8 +241,8 @@ Create an instance: `const data_breach_check = client.data_breach_check`
 
 #### Example: List
 
-```ts
-const data_breach_checks = await client.data_breach_check.list()
+```python
+data_breach_checks = client.DataBreachCheck().list({})
 ```
 
 
@@ -313,7 +316,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-databreachcheck = client.databreachcheck
+databreachcheck = client.DataBreachCheck()
 databreachcheck.load({"id": "example_id"})
 
 # databreachcheck.data_get() now returns the loaded databreachcheck data

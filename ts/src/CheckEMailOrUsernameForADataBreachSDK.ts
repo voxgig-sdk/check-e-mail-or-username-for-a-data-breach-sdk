@@ -204,14 +204,7 @@ class CheckEMailOrUsernameForADataBreachSDK {
 
 
 
-  _data_breach_check?: DataBreachCheckEntity
-
-  // Idiomatic facade: `client.data_breach_check.list()` / `client.data_breach_check.load({ id })`.
-  get data_breach_check(): DataBreachCheckEntity {
-    return (this._data_breach_check ??= new DataBreachCheckEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.data_breach_check` instead. */
+  // Entity access: `client.DataBreachCheck().list()` / `client.DataBreachCheck().load({ id })`.
   DataBreachCheck(data?: any) {
     const self = this
     return new DataBreachCheckEntity(self,data)

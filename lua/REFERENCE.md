@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## DataBreachCheckEntity
 
 ```lua
-local data_breach_check = client:data_breach_check(nil)
+local data_breach_check = client:DataBreachCheck(nil)
 ```
 
 ### Fields
@@ -100,7 +100,7 @@ local data_breach_check = client:data_breach_check(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:data_breach_check():list()
+local results, err = client:DataBreachCheck():list()
 ```
 
 ### Common Methods

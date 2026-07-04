@@ -26,9 +26,11 @@ import { CheckEMailOrUsernameForADataBreachSDK } from '@voxgig-sdk/check-e-mail-
 
 const client = new CheckEMailOrUsernameForADataBreachSDK()
 
-// List all databreachchecks
-const databreachchecks = await client.databreachcheck.list()
-console.log(databreachchecks.data)
+// List all databreachchecks (returns DataBreachCheck[])
+const databreachchecks = await client.DataBreachCheck().list()
+for (const databreachcheck of databreachchecks) {
+  console.log(databreachcheck)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from checkemailorusernameforadatabreach_sdk import CheckEMailOrUsernameForADataB
 
 client = CheckEMailOrUsernameForADataBreachSDK()
 
-# List all databreachchecks
-databreachchecks = client.databreachcheck.list()
-print(databreachchecks)
+# List all databreachchecks (returns a list, raises on error)
+databreachchecks = client.DataBreachCheck().list({})
+for databreachcheck in databreachchecks:
+    print(databreachcheck)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'checkemailorusernameforadatabreach_sdk.php';
 
 $client = new CheckEMailOrUsernameForADataBreachSDK();
 
-// List all databreachchecks (throws on error)
-$databreachchecks = $client->databreachcheck()->list();
+// List all databreachchecks (returns an array; throws on error)
+$databreachchecks = $client->DataBreachCheck()->list();
 print_r($databreachchecks);
 ```
 
@@ -120,8 +123,8 @@ require_relative "CheckEMailOrUsernameForADataBreach_sdk"
 
 client = CheckEMailOrUsernameForADataBreachSDK.new
 
-# List all databreachchecks
-databreachchecks = client.databreachcheck.list
+# List all databreachchecks (returns an Array; raises on error)
+databreachchecks = client.DataBreachCheck.list
 puts databreachchecks
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("check-e-mail-or-username-for-a-data-breach_sdk")
 local client = sdk.new()
 
 -- List all databreachchecks
-local databreachchecks, err = client:databreachcheck():list()
+local databreachchecks, err = client:DataBreachCheck():list()
 print(databreachchecks)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = CheckEMailOrUsernameForADataBreachSDK.test()
-const result = await client.databreachcheck.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const databreachcheck = await client.DataBreachCheck().load({ id: 'test01' })
+// databreachcheck is a bare DataBreachCheck populated with mock data
+console.log(databreachcheck)
 ```
 
 ### Python
 
 ```python
 client = CheckEMailOrUsernameForADataBreachSDK.test()
-result = client.databreachcheck.load({"id": "test01"})
+databreachcheck = client.DataBreachCheck().load({"id": "test01"})
+print(databreachcheck)
 ```
 
 ### PHP
 
 ```php
-$client = CheckEMailOrUsernameForADataBreachSDK::test();
-$result = $client->databreachcheck()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = CheckEMailOrUsernameForADataBreachSDK::test([
+    "entity" => ["databreachcheck" => ["test01" => ["id" => "test01"]]],
+]);
+$databreachcheck = $client->DataBreachCheck()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.DataBreachCheck(nil).Load(
 ### Ruby
 
 ```ruby
-client = CheckEMailOrUsernameForADataBreachSDK.test
-result = client.databreachcheck.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = CheckEMailOrUsernameForADataBreachSDK.test({
+  "entity" => { "databreachcheck" => { "test01" => { "id" => "test01" } } },
+})
+databreachcheck = client.DataBreachCheck.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:databreachcheck():load({ id = "test01" })
+local result, err = client:DataBreachCheck():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

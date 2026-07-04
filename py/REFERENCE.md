@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## DataBreachCheckEntity
 
 ```python
-data_breach_check = client.data_breach_check
+data_breach_check = client.DataBreachCheck()
 ```
 
 ### Fields
@@ -97,7 +97,9 @@ data_breach_check = client.data_breach_check
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.data_breach_check.list({})
+results = client.DataBreachCheck().list({})
+for data_breach_check in results:
+    print(data_breach_check)
 ```
 
 ### Common Methods
