@@ -20,9 +20,6 @@ class CheckEMailOrUsernameForADataBreachConfig
             ],
             "options" => [
                 "base" => "https://leakcheck.io/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

@@ -45,6 +45,7 @@ class DataBreachCheckEntity
     end
   end
 
+  # @return [DataBreachCheck, Hash] the current DataBreachCheck data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class DataBreachCheckEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of DataBreachCheck fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class DataBreachCheckEntity
   
 
   
+  # List DataBreachCheck items matching the given filter.
+  #
+  # @param reqmatch [DataBreachCheckListMatch, Hash, nil] match filter (any subset of DataBreachCheck fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<DataBreachCheck>, Array] the matching DataBreachCheck items; raises CheckEMailOrUsernameForADataBreachError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

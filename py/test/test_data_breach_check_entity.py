@@ -50,8 +50,7 @@ class TestDataBreachCheckEntity:
         data_breach_check_ref01_ent = client.DataBreachCheck(None)
         data_breach_check_ref01_match = {}
 
-        data_breach_check_ref01_list_result, err = data_breach_check_ref01_ent.list(data_breach_check_ref01_match, None)
-        assert err is None
+        data_breach_check_ref01_list_result = data_breach_check_ref01_ent.list(data_breach_check_ref01_match, None)
         assert isinstance(data_breach_check_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _data_breach_check_basic_setup(extra):
         "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID": idmap,
         "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE": "FALSE",
         "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_EXPLAIN": "FALSE",
-        "CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _data_breach_check_basic_setup(extra):
     if env.get("CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("CHECKEMAILORUSERNAMEFORADATABREACH_APIKEY"),
             },
             extra or {},
         ])

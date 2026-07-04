@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  DataBreachCheck,
+  DataBreachCheckListMatch,
+} from '../CheckEMailOrUsernameForADataBreachTypes'
 
 // TODO: needs Entity superclass
-class DataBreachCheckEntity extends CheckEMailOrUsernameForADataBreachEntityBase {
+class DataBreachCheckEntity extends CheckEMailOrUsernameForADataBreachEntityBase<DataBreachCheck> {
 
   constructor(client: CheckEMailOrUsernameForADataBreachSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class DataBreachCheckEntity extends CheckEMailOrUsernameForADataBreachEntityBase
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: DataBreachCheckListMatch, ctrl?: Control): Promise<DataBreachCheck[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class DataBreachCheckEntity extends CheckEMailOrUsernameForADataBreachEntityBase
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<DataBreachCheck[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

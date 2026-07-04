@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -84,7 +83,7 @@ same parameters as `direct()`.
 ## DataBreachCheckEntity
 
 ```lua
-local data_breach_check = client:DataBreachCheck(nil)
+local data_breach_check = client:data_breach_check(nil)
 ```
 
 ### Fields
@@ -101,7 +100,7 @@ local data_breach_check = client:DataBreachCheck(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:DataBreachCheck():list()
+local results, err = client:data_breach_check():list()
 ```
 
 ### Common Methods

@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "LeakCheck API Documentation"
         url: "https://wiki.leakcheck.io/en/api/public"

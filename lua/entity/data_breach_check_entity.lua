@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch DataBreachCheckListMatch
+---@param ctrl? table
+---@return DataBreachCheck[]
+---@return string? err
 function DataBreachCheckEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

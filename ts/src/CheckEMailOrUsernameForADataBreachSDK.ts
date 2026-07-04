@@ -2,6 +2,8 @@
 
 import { DataBreachCheckEntity } from './entity/DataBreachCheckEntity'
 
+export type * from './CheckEMailOrUsernameForADataBreachTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class CheckEMailOrUsernameForADataBreachSDK {
 
 
 
+  _data_breach_check?: DataBreachCheckEntity
+
+  // Idiomatic facade: `client.data_breach_check.list()` / `client.data_breach_check.load({ id })`.
+  get data_breach_check(): DataBreachCheckEntity {
+    return (this._data_breach_check ??= new DataBreachCheckEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.data_breach_check` instead. */
   DataBreachCheck(data?: any) {
     const self = this
     return new DataBreachCheckEntity(self,data)

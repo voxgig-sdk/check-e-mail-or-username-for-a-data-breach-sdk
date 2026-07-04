@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `CheckEMailOrUsernameForADataBreachSDK.test()`.
 ## DataBreachCheckEntity
 
 ```ts
-const data_breach_check = client.DataBreachCheck()
+const data_breach_check = client.data_breach_check
 ```
 
 ### Fields
@@ -127,7 +126,7 @@ const data_breach_check = client.DataBreachCheck()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.DataBreachCheck().list()
+const results = await client.data_breach_check.list()
 ```
 
 ### Common Methods

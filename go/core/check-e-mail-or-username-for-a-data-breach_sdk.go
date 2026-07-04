@@ -245,6 +245,9 @@ func (sdk *CheckEMailOrUsernameForADataBreachSDK) Direct(fetchargs map[string]an
 }
 
 
+// DataBreachCheck returns a DataBreachCheck entity bound to this client.
+// Idiomatic usage: client.DataBreachCheck(nil).List(nil, nil) or
+// client.DataBreachCheck(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CheckEMailOrUsernameForADataBreachSDK) DataBreachCheck(data map[string]any) CheckEMailOrUsernameForADataBreachEntity {
 	return NewDataBreachCheckEntityFunc(sdk, data)
 }
