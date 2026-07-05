@@ -8,7 +8,7 @@ Complete API reference for the CheckEMailOrUsernameForADataBreach Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'check-e-mail-or-username-for-a-data-breach_sdk'
+require_relative 'CheckEMailOrUsernameForADataBreach_sdk'
 
 client = CheckEMailOrUsernameForADataBreachSDK.new(options)
 ```
@@ -93,17 +93,17 @@ data_breach_check = client.DataBreachCheck
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `date` | `String` | Yes |  |
+| `name` | `String` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.DataBreachCheck.list(nil)
+results = client.DataBreachCheck.list
 ```
 
 ### Common Methods

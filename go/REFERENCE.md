@@ -97,8 +97,8 @@ data_breach_check := client.DataBreachCheck(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `date` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
 
 ### Operations
 

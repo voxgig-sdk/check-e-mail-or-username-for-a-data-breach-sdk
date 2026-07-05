@@ -14,8 +14,7 @@ type DataBreachCheck struct {
 	Name string `json:"name"`
 }
 
-// DataBreachCheckListMatch mirrors the data_breach_check fields as an all-optional match
-// filter (Go analog of Partial<DataBreachCheck>).
+// DataBreachCheckListMatch is the typed request payload for DataBreachCheck.ListTyped.
 type DataBreachCheckListMatch struct {
 	Date *string `json:"date,omitempty"`
 	Name *string `json:"name,omitempty"`

@@ -8,7 +8,7 @@ Complete API reference for the CheckEMailOrUsernameForADataBreach PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/check-e-mail-or-username-for-a-data-breach_sdk.php';
+require_once __DIR__ . '/checkemailorusernameforadatabreach_sdk.php';
 
 $client = new CheckEMailOrUsernameForADataBreachSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = CheckEMailOrUsernameForADataBreachSDK::test();
 
 Create a new `DataBreachCheckEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): CheckEMailOrUsernameForADataBreachUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,34 +92,34 @@ $data_breach_check = $client->DataBreachCheck();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `date` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->DataBreachCheck()->list([]);
+$results = $client->DataBreachCheck()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -128,7 +128,7 @@ Set the entity match criteria.
 Create a new `DataBreachCheckEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

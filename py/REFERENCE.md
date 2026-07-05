@@ -8,7 +8,7 @@ Complete API reference for the CheckEMailOrUsernameForADataBreach Python SDK.
 ### Constructor
 
 ```python
-from check-e-mail-or-username-for-a-data-breach_sdk import CheckEMailOrUsernameForADataBreachSDK
+from checkemailorusernameforadatabreach_sdk import CheckEMailOrUsernameForADataBreachSDK
 
 client = CheckEMailOrUsernameForADataBreachSDK(options)
 ```
@@ -87,17 +87,17 @@ data_breach_check = client.DataBreachCheck()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `date` | `str` | Yes |  |
+| `name` | `str` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.DataBreachCheck().list({})
+results = client.DataBreachCheck().list()
 for data_breach_check in results:
     print(data_breach_check)
 ```

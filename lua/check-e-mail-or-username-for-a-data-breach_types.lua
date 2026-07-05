@@ -11,6 +11,8 @@
 ---@field name string
 
 ---@class DataBreachCheckListMatch
+---@field date? string
+---@field name? string
 
 local M = {}
 

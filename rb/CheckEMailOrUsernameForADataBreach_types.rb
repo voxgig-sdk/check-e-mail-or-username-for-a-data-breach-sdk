@@ -21,7 +21,7 @@ DataBreachCheck = Struct.new(
   keyword_init: true
 )
 
-# Match filter for DataBreachCheck#list (any subset of DataBreachCheck fields).
+# Request payload for DataBreachCheck#list.
 #
 # @!attribute [rw] date
 #   @return [String, nil]

@@ -10,5 +10,8 @@ export interface DataBreachCheck {
   name: string
 }
 
-export type DataBreachCheckListMatch = Partial<DataBreachCheck>
+export interface DataBreachCheckListMatch {
+  date?: string
+  name?: string
+}
 

@@ -19,7 +19,7 @@ class DataBreachCheck
     public string $name;
 }
 
-/** Match filter for DataBreachCheck#list (any subset of DataBreachCheck fields). */
+/** Request payload for DataBreachCheck#list. */
 class DataBreachCheckListMatch
 {
     public ?string $date = null;

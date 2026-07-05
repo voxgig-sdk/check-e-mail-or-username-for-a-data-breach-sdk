@@ -221,7 +221,7 @@ class CheckEMailOrUsernameForADataBreachSDK:
 
 
     def DataBreachCheck(self, data=None) -> "DataBreachCheckEntity":
-        """Entity factory: client.DataBreachCheck().list({}) / client.DataBreachCheck().load({"id": ...})."""
+        """Entity factory: client.DataBreachCheck().list() / client.DataBreachCheck().load({"id": ...})."""
         from entity.data_breach_check_entity import DataBreachCheckEntity
         return DataBreachCheckEntity(self, data)
 
