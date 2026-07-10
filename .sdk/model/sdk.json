@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -213,15 +210,18 @@
           "url": "https://wiki.leakcheck.io/en/api/public"
         },
         "description": "LeakCheck is a service that enables users and companies to ascertain whether their credentials have been compromised. By utilising this API, users can ascertain whether their email address or username has been involved in any data breach.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://leakcheck.io/api"
           }
         ],
+        "summary": "LeakCheck is a service that enables users and companies to ascertain whether their credentials have been compromised.",
         "termsOfService": "https://wiki.leakcheck.io/en/api/public",
         "title": "LeakCheck Public API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://wiki.leakcheck.io/en/api/public"
       },
       "option": {},
       "target": {
@@ -274,6 +274,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -324,6 +327,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

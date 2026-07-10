@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // List databreachcheck records — the value is the array of records itself.
-    databreachchecks, err := client.DataBreachCheck(nil).List(nil, nil)
+    // List dataBreachCheck records — the value is the array of records itself.
+    dataBreachChecks, err := client.DataBreachCheck(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range databreachchecks.([]any) {
+    for _, item := range dataBreachChecks.([]any) {
         fmt.Println(item)
     }
 }
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-databreachcheck, err := client.DataBreachCheck(nil).List(
+dataBreachCheck, err := client.DataBreachCheck(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(databreachcheck) // the returned mock data
+fmt.Println(dataBreachCheck) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -247,9 +247,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    databreachcheck, err := client.DataBreachCheck(nil).List(map[string]any{/* fields */}, nil)
+    dataBreachCheck, err := client.DataBreachCheck(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // databreachcheck is the returned record
+    // dataBreachCheck is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -274,7 +274,7 @@ API path: `/public`
 
 ### DataBreachCheck
 
-Create an instance: `data_breach_check := client.DataBreachCheck(nil)`
+Create an instance: `dataBreachCheck := client.DataBreachCheck(nil)`
 
 #### Operations
 
@@ -292,11 +292,11 @@ Create an instance: `data_breach_check := client.DataBreachCheck(nil)`
 #### Example: List
 
 ```go
-data_breach_checks, err := client.DataBreachCheck(nil).List(nil, nil)
+dataBreachChecks, err := client.DataBreachCheck(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(data_breach_checks) // the array of records
+fmt.Println(dataBreachChecks) // the array of records
 ```
 
 

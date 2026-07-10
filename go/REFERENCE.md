@@ -90,7 +90,8 @@ same parameters as `Direct()`.
 ## DataBreachCheckEntity
 
 ```go
-data_breach_check := client.DataBreachCheck(nil)
+dataBreachCheck := client.DataBreachCheck(nil)
+fmt.Println(dataBreachCheck.GetName()) // "data_breach_check"
 ```
 
 ### Fields
@@ -108,6 +109,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.DataBreachCheck(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

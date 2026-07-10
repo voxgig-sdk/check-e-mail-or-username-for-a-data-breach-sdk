@@ -16,10 +16,10 @@ main: {
           url: "https://leakcheck.io/api"
         }
       ]
+      summary: "LeakCheck is a service that enables users and companies to ascertain whether their credentials have been compromised."
       termsOfService: "https://wiki.leakcheck.io/en/api/public"
       title: "LeakCheck Public API"
       version: "1.0.0"
+      website: "https://wiki.leakcheck.io/en/api/public"
     }
   }
-}
-
