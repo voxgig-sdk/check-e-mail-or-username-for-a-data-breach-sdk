@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- CheckEMailOrUsernameForADataBreach SDK exists test
 
 local sdk = require("check-e-mail-or-username-for-a-data-breach_sdk")
 
