@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ CheckEMailOrUsernameForADataBreachUtility.registrar = ->(u) {
   u.prepare_params = CheckEMailOrUsernameForADataBreachUtilities::PrepareParams
   u.prepare_path = CheckEMailOrUsernameForADataBreachUtilities::PreparePath
   u.prepare_query = CheckEMailOrUsernameForADataBreachUtilities::PrepareQuery
+  u.graphql_body = CheckEMailOrUsernameForADataBreachUtilities::GraphqlBody
+  u.graphql_errors = CheckEMailOrUsernameForADataBreachUtilities::GraphqlErrors
   u.result_basic = CheckEMailOrUsernameForADataBreachUtilities::ResultBasic
   u.result_body = CheckEMailOrUsernameForADataBreachUtilities::ResultBody
   u.result_headers = CheckEMailOrUsernameForADataBreachUtilities::ResultHeaders

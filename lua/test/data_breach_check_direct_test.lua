@@ -61,11 +61,11 @@ function data_breach_check_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID"] = {},
-    ["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] = "FALSE",
+    ["CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_DATA_BREACH_CHECK_ENTID"] = {},
+    ["CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] == "TRUE"
+  local live = env["CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

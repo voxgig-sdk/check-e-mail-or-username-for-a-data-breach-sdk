@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from checkemailorusernameforadatabreach_sdk.utility.voxgig_struct import voxgig_struct as vs
 from checkemailorusernameforadatabreach_sdk import CheckEMailOrUsernameForADataBreachSDK
-from core import helpers
+from checkemailorusernameforadatabreach_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _data_breach_check_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID": {},
-        "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE": "FALSE",
+        "CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_DATA_BREACH_CHECK_ENTID": {},
+        "CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE") == "TRUE"
+    live = env.get("CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

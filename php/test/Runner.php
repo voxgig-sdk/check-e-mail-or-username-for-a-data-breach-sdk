@@ -43,8 +43,8 @@ class CheckEMailOrUsernameForADataBreachTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE');
-        $override = self::getenv('CHECKEMAILORUSERNAMEFORADATABREACH_TEST_OVERRIDE');
+        $live = self::getenv('CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE');
+        $override = self::getenv('CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class CheckEMailOrUsernameForADataBreachTestRunner
             }
         }
 
-        $explain = self::getenv('CHECKEMAILORUSERNAMEFORADATABREACH_TEST_EXPLAIN');
+        $explain = self::getenv('CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['CHECKEMAILORUSERNAMEFORADATABREACH_TEST_EXPLAIN'] = $explain;
+            $m['CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

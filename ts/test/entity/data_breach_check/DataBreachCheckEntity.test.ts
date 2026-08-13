@@ -26,8 +26,8 @@ import {
 describe('DataBreachCheckEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE=TRUE.
-  afterEach(liveDelay('CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE=TRUE.
+  afterEach(liveDelay('CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = CheckEMailOrUsernameForADataBreachSDK.test()
@@ -63,7 +63,7 @@ describe('DataBreachCheckEntity', async () => {
     const data_breach_check_ref01_ent = client.DataBreachCheck()
     const data_breach_check_ref01_match: any = {}
 
-    const data_breach_check_ref01_list = await data_breach_check_ref01_ent.list(data_breach_check_ref01_match)
+    const data_breach_check_ref01_list = (await data_breach_check_ref01_ent.list(data_breach_check_ref01_match)).map((e: any) => e.data())
 
 
   })

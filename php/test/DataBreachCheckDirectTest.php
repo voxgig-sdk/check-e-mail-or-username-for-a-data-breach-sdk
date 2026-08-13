@@ -66,11 +66,11 @@ function data_breach_check_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_DATA_BREACH_CHECK_ENTID" => [],
-        "CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE" => "FALSE",
+        "CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_DATA_BREACH_CHECK_ENTID" => [],
+        "CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE"] === "TRUE";
+    $live = $env["CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

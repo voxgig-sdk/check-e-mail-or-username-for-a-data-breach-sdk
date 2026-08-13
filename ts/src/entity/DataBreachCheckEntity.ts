@@ -37,7 +37,7 @@ class DataBreachCheckEntity extends CheckEMailOrUsernameForADataBreachEntityBase
 
 
 
-  async list(this: any, reqmatch?: DataBreachCheckListMatch, ctrl?: Control): Promise<DataBreachCheck[]> {
+  async list(this: any, reqmatch?: DataBreachCheckListMatch, ctrl?: Control): Promise<DataBreachCheckEntity[]> {
 
     const utility = this._utility
 

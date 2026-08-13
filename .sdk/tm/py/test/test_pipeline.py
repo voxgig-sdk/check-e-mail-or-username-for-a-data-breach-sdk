@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import CheckEMailOrUsernameForADataBreachSDK
-from core.error import CheckEMailOrUsernameForADataBreachError
-from core.result import CheckEMailOrUsernameForADataBreachResult
-from core.response import CheckEMailOrUsernameForADataBreachResponse
-from core.spec import CheckEMailOrUsernameForADataBreachSpec
-from feature.base_feature import CheckEMailOrUsernameForADataBreachBaseFeature
+from projectname_sdk.core.error import CheckEMailOrUsernameForADataBreachError
+from projectname_sdk.core.result import CheckEMailOrUsernameForADataBreachResult
+from projectname_sdk.core.response import CheckEMailOrUsernameForADataBreachResponse
+from projectname_sdk.core.spec import CheckEMailOrUsernameForADataBreachSpec
+from projectname_sdk.feature.base_feature import CheckEMailOrUsernameForADataBreachBaseFeature
 
 
 def _client():

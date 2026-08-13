@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ CheckEMailOrUsernameForADataBreachUtility::setRegistrar(function (CheckEMailOrUs
     $u->prepare_params = [CheckEMailOrUsernameForADataBreachPrepareParams::class, 'call'];
     $u->prepare_path = [CheckEMailOrUsernameForADataBreachPreparePath::class, 'call'];
     $u->prepare_query = [CheckEMailOrUsernameForADataBreachPrepareQuery::class, 'call'];
+    $u->graphql_body = [CheckEMailOrUsernameForADataBreachGraphql::class, 'body'];
+    $u->graphql_errors = [CheckEMailOrUsernameForADataBreachGraphql::class, 'errors'];
     $u->result_basic = [CheckEMailOrUsernameForADataBreachResultBasic::class, 'call'];
     $u->result_body = [CheckEMailOrUsernameForADataBreachResultBody::class, 'call'];
     $u->result_headers = [CheckEMailOrUsernameForADataBreachResultHeaders::class, 'call'];

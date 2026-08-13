@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = CheckEMailOrUsernameForADataBreachSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = CheckEMailOrUsernameForADataBreachSDK.test({
+  entity: {
+    data_breach_check: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const databreachchecks = await client.DataBreachCheck().list()
-// databreachchecks is an array of bare DataBreachCheck records populated with mock data
+// databreachchecks is an array of DataBreachCheck entities, populated with mock data
+// — call databreachchecks[0].data() for the record itself
 console.log(databreachchecks)
 ```
 
@@ -110,7 +119,7 @@ import { CheckEMailOrUsernameForADataBreachSDK } from '@voxgig-sdk/check-e-mail-
 
 const client = new CheckEMailOrUsernameForADataBreachSDK()
 
-// List all databreachchecks (returns DataBreachCheck[])
+// List all databreachchecks (returns DataBreachCheckEntity[] — .data() for the record)
 const databreachchecks = await client.DataBreachCheck().list()
 for (const databreachcheck of databreachchecks) {
   console.log(databreachcheck)
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://wiki.leakcheck.io/en/api/public](https://wiki.leakcheck.io/en/api/public)
 

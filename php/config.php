@@ -66,6 +66,7 @@ class CheckEMailOrUsernameForADataBreachConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/public',
                   'parts' => [

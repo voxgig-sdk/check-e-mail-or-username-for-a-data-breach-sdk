@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# CheckEMailOrUsernameForADataBreach SDK exists test
 
 import pytest
 from checkemailorusernameforadatabreach_sdk import CheckEMailOrUsernameForADataBreachSDK

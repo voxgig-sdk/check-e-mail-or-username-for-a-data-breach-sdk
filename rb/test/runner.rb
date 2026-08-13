@@ -23,8 +23,8 @@ module CheckEMailOrUsernameForADataBreachTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("CHECKEMAILORUSERNAMEFORADATABREACH_TEST_LIVE")
-    override = getenv("CHECKEMAILORUSERNAMEFORADATABREACH_TEST_OVERRIDE")
+    live = getenv("CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE")
+    override = getenv("CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module CheckEMailOrUsernameForADataBreachTestRunner
       end
     end
 
-    explain = getenv("CHECKEMAILORUSERNAMEFORADATABREACH_TEST_EXPLAIN")
-    m["CHECKEMAILORUSERNAMEFORADATABREACH_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_EXPLAIN")
+    m["CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

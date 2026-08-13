@@ -218,9 +218,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local data_breach_check, err = client:DataBreachCheck():load()
+    local data_breach_check, err = client:DataBreachCheck():list()
     if err then error(err) end
-    -- data_breach_check is the loaded record
+    -- data_breach_check is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.

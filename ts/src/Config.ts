@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'CheckEMailOrUsernameForADataBreach',
   }
 
 
@@ -90,6 +90,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/public",
               "parts": [

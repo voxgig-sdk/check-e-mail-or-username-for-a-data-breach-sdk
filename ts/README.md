@@ -35,7 +35,9 @@ const client = new CheckEMailOrUsernameForADataBreachSDK()
 
 ### 2. List databreachcheck records
 
-`list()` resolves to an array of DataBreachCheck objects — iterate it directly:
+`list()` resolves to an array of DataBreachCheck ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const databreachchecks = await client.DataBreachCheck().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = CheckEMailOrUsernameForADataBreachSDK.test()
 
 const databreachcheck = await client.DataBreachCheck().list()
-// databreachcheck is a bare entity populated with mock response data
+// databreachcheck is the entity, populated with mock response data
+// — call databreachcheck.data() for the record itself
 console.log(databreachcheck)
 ```
 
