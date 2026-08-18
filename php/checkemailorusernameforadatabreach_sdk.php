@@ -40,7 +40,7 @@ class CheckEMailOrUsernameForADataBreachSDK
         $utility = new CheckEMailOrUsernameForADataBreachUtility();
         $this->_utility = $utility;
 
-        $config = CheckEMailOrUsernameForADataBreachConfig::make_config();
+        $config = CheckEMailOrUsernameForADataBreachConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

@@ -23,7 +23,7 @@ func NewCheckEMailOrUsernameForADataBreachSDK(options map[string]any) *CheckEMai
 
 	sdk.utility = NewUtility()
 
-	config := MakeConfig()
+	config := SharedConfig()
 
 	sdk.rootctx = sdk.utility.MakeContext(map[string]any{
 		"client":  sdk,

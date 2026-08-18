@@ -23,6 +23,7 @@ build = {
   modules = {
     ["check-e-mail-or-username-for-a-data-breach_sdk"] = "check-e-mail-or-username-for-a-data-breach_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

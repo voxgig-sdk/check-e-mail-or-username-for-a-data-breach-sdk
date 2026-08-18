@@ -23,8 +23,8 @@ class CheckEMailOrUsernameForADataBreachSDK:
         utility = CheckEMailOrUsernameForADataBreachUtility()
         self._utility = utility
 
-        from checkemailorusernameforadatabreach_sdk.config import make_config
-        config = make_config()
+        from checkemailorusernameforadatabreach_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

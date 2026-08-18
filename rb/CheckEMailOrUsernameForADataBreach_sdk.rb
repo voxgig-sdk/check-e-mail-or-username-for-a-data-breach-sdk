@@ -28,7 +28,7 @@ class CheckEMailOrUsernameForADataBreachSDK
     utility = CheckEMailOrUsernameForADataBreachUtility.new
     @_utility = utility
 
-    config = CheckEMailOrUsernameForADataBreachConfig.make_config
+    config = CheckEMailOrUsernameForADataBreachConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
