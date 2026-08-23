@@ -87,8 +87,8 @@ data_breach_check = client.DataBreachCheck()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `str` | Yes |  |
-| `name` | `str` | Yes |  |
+| `date` | `str` | Yes | Date of the breach in YYYY-MM format |
+| `name` | `str` | Yes | Name of the breached service or database |
 
 ### Operations
 

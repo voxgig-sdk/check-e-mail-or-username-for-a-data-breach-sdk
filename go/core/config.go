@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "CheckEMailOrUsernameForADataBreach",
+			"slug": "check-e-mail-or-username-for-a-data-breach",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,11 +37,13 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "date",
 						"req": true,
+						"short": "Date of the breach in YYYY-MM format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
 						"req": true,
+						"short": "Name of the breached service or database",
 						"type": "`$STRING`",
 					},
 				},

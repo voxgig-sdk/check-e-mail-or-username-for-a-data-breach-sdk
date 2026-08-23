@@ -6,7 +6,7 @@ The Golang SDK for the CheckEMailOrUsernameForADataBreach API — an entity-orie
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.DataBreachCheck(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -260,8 +260,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"date"` |  |
-| `"name"` |  |
+| `"date"` | Date of the breach in YYYY-MM format |
+| `"name"` | Name of the breached service or database |
 
 Operations: List.
 
@@ -286,8 +286,8 @@ Create an instance: `dataBreachCheck := client.DataBreachCheck(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `string` |  |
-| `name` | `string` |  |
+| `date` | `string` | Date of the breach in YYYY-MM format |
+| `name` | `string` | Name of the breached service or database |
 
 #### Example: List
 

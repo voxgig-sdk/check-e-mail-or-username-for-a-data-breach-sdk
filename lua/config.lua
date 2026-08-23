@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "CheckEMailOrUsernameForADataBreach",
+      slug = "check-e-mail-or-username-for-a-data-breach",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -30,11 +33,13 @@ local function make_config()
           {
             ["name"] = "date",
             ["req"] = true,
+            ["short"] = "Date of the breach in YYYY-MM format",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
             ["req"] = true,
+            ["short"] = "Name of the breached service or database",
             ["type"] = "`$STRING`",
           },
         },

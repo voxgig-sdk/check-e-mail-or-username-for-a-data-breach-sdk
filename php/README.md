@@ -247,8 +247,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `date` |  |
-| `name` |  |
+| `date` | Date of the breach in YYYY-MM format |
+| `name` | Name of the breached service or database |
 
 Operations: List.
 
@@ -273,8 +273,8 @@ Create an instance: `$data_breach_check = $client->DataBreachCheck();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `string` |  |
-| `name` | `string` |  |
+| `date` | `string` | Date of the breach in YYYY-MM format |
+| `name` | `string` | Name of the breached service or database |
 
 #### Example: List
 

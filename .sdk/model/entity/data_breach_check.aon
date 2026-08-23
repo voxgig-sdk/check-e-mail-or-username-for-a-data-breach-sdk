@@ -8,11 +8,13 @@ main: kit: entity: data_breach_check: {
     {
       name: "date"
       req: true
+      short: "Date of the breach in YYYY-MM format"
       type: "`$STRING`"
     }
     {
       name: "name"
       req: true
+      short: "Name of the breached service or database"
       type: "`$STRING`"
     }
   ]

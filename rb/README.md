@@ -237,8 +237,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `date` |  |
-| `name` |  |
+| `date` | Date of the breach in YYYY-MM format |
+| `name` | Name of the breached service or database |
 
 Operations: List.
 
@@ -263,8 +263,8 @@ Create an instance: `data_breach_check = client.DataBreachCheck`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `String` |  |
-| `name` | `String` |  |
+| `date` | `String` | Date of the breach in YYYY-MM format |
+| `name` | `String` | Name of the breached service or database |
 
 #### Example: List
 

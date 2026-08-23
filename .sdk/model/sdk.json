@@ -36,12 +36,14 @@
               "active": true,
               "name": "date",
               "req": true,
+              "short": "Date of the breach in YYYY-MM format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": true,
+              "short": "Name of the breached service or database",
               "type": "`$STRING`"
             }
           ],

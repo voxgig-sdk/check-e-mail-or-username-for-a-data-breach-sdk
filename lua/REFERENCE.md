@@ -90,8 +90,8 @@ local data_breach_check = client:DataBreachCheck(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
+| `date` | `string` | Yes | Date of the breach in YYYY-MM format |
+| `name` | `string` | Yes | Name of the breached service or database |
 
 ### Operations
 

@@ -93,8 +93,8 @@ data_breach_check = client.DataBreachCheck
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `String` | Yes |  |
-| `name` | `String` | Yes |  |
+| `date` | `String` | Yes | Date of the breach in YYYY-MM format |
+| `name` | `String` | Yes | Name of the breached service or database |
 
 ### Operations
 

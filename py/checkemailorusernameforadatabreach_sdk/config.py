@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "CheckEMailOrUsernameForADataBreach",
+            "slug": "check-e-mail-or-username-for-a-data-breach",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,11 +54,13 @@ def make_config():
           {
             "name": "date",
             "req": True,
+            "short": "Date of the breach in YYYY-MM format",
             "type": "`$STRING`",
           },
           {
             "name": "name",
             "req": True,
+            "short": "Name of the breached service or database",
             "type": "`$STRING`",
           },
         ],

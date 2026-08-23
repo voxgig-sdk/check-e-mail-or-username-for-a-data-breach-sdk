@@ -19,6 +19,9 @@ module CheckEMailOrUsernameForADataBreachConfig
     {
       "main" => {
         "name" => "CheckEMailOrUsernameForADataBreach",
+        "slug" => "check-e-mail-or-username-for-a-data-breach",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -42,11 +45,13 @@ module CheckEMailOrUsernameForADataBreachConfig
             {
               "name" => "date",
               "req" => true,
+              "short" => "Date of the breach in YYYY-MM format",
               "type" => "`$STRING`",
             },
             {
               "name" => "name",
               "req" => true,
+              "short" => "Name of the breached service or database",
               "type" => "`$STRING`",
             },
           ],
