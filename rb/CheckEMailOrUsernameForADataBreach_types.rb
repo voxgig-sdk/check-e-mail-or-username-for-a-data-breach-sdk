@@ -23,14 +23,10 @@ DataBreachCheck = Struct.new(
 
 # Request payload for DataBreachCheck#list.
 #
-# @!attribute [rw] date
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
+# @!attribute [rw] check
+#   @return [String]
 DataBreachCheckListMatch = Struct.new(
-  :date,
-  :name,
+  :check,
   keyword_init: true
 )
 

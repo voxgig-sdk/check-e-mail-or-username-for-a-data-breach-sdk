@@ -21,6 +21,5 @@ class DataBreachCheck(TypedDict):
     name: str
 
 
-class DataBreachCheckListMatch(TypedDict, total=False):
-    date: str
-    name: str
+class DataBreachCheckListMatch(TypedDict):
+    check: str

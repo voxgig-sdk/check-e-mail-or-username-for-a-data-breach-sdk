@@ -22,7 +22,6 @@ class DataBreachCheck
 /** Request payload for DataBreachCheck#list. */
 class DataBreachCheckListMatch
 {
-    public ?string $date = null;
-    public ?string $name = null;
+    public string $check;
 }
 

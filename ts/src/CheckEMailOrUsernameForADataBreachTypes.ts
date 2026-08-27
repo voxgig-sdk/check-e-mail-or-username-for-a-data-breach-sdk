@@ -11,7 +11,6 @@ export interface DataBreachCheck {
 }
 
 export interface DataBreachCheckListMatch {
-  date?: string
-  name?: string
+  check: string
 }
 
