@@ -65,8 +65,11 @@ def _data_breach_check_direct_setup(mockres):
     live = env.get("CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
-        }
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
+        })
         client = CheckEMailOrUsernameForADataBreachSDK(merged_opts)
         return {
             "client": client,

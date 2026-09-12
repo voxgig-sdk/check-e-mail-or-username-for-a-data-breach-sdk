@@ -78,8 +78,10 @@ module CheckEMailOrUsernameForADataBreachConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/public",
-                  "parts" => [
-                    "public",
+                  "segments" => [
+                    {
+                      "lit" => "public",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -90,6 +92,9 @@ module CheckEMailOrUsernameForADataBreachConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "public",
+                  ],
                 },
               ],
             },

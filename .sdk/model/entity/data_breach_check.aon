@@ -39,8 +39,10 @@ main: kit: entity: data_breach_check: {
           }
           method: "GET"
           orig: "/public"
-          parts: [
-            "public"
+          segments: [
+            {
+              lit: "public"
+            }
           ]
           select: {
             exist: [

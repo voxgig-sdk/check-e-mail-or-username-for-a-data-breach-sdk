@@ -92,8 +92,10 @@ class CheckEMailOrUsernameForADataBreachConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/public',
-                  'parts' => [
-                    'public',
+                  'segments' => [
+                    [
+                      'lit' => 'public',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -103,6 +105,9 @@ class CheckEMailOrUsernameForADataBreachConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'public',
                   ],
                 ],
               ],
