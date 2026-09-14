@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { CheckEMailOrUsernameForADataBreachSDK } from '@voxgig-sdk/check-e-mail-or-username-for-a-data-breach'
+import { CheckEMailOrUsernameForADataBreachSDK } from '@voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk'
 
 const client = new CheckEMailOrUsernameForADataBreachSDK()
 ```
@@ -405,7 +405,7 @@ check-e-mail-or-username-for-a-data-breach/
 Import the SDK from the package root:
 
 ```ts
-import { CheckEMailOrUsernameForADataBreachSDK } from '@voxgig-sdk/check-e-mail-or-username-for-a-data-breach'
+import { CheckEMailOrUsernameForADataBreachSDK } from '@voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk'
 ```
 
 ### Entity state

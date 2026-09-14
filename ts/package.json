@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/check-e-mail-or-username-for-a-data-breach",
+  "name": "@voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the LeakCheck Public public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

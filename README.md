@@ -105,7 +105,7 @@ local results, err = client:DataBreachCheck():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/check-e-mail-or-username-for-a-data-breach` | publish pending — [install from git tag](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases) |
+| TypeScript | `@voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases) |
 | Python | `voxgig-sdk-check-e-mail-or-username-for-a-data-breach` | publish pending — [install from git tag](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases) |
 | PHP | `voxgig-sdk/check-e-mail-or-username-for-a-data-breach` | publish pending — [install from git tag](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go` | `go get github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:DataBreachCheck():list()
 ### TypeScript
 
 ```ts
-import { CheckEMailOrUsernameForADataBreachSDK } from '@voxgig-sdk/check-e-mail-or-username-for-a-data-breach'
+import { CheckEMailOrUsernameForADataBreachSDK } from '@voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk'
 
 const client = new CheckEMailOrUsernameForADataBreachSDK()
 
