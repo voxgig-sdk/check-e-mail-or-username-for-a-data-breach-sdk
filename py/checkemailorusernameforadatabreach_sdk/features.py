@@ -1,12 +1,18 @@
 # CheckEMailOrUsernameForADataBreach SDK feature factory
 
 from checkemailorusernameforadatabreach_sdk.feature.base_feature import CheckEMailOrUsernameForADataBreachBaseFeature
+from checkemailorusernameforadatabreach_sdk.feature.ratelimit_feature import CheckEMailOrUsernameForADataBreachRatelimitFeature
+from checkemailorusernameforadatabreach_sdk.feature.retry_feature import CheckEMailOrUsernameForADataBreachRetryFeature
 from checkemailorusernameforadatabreach_sdk.feature.test_feature import CheckEMailOrUsernameForADataBreachTestFeature
+from checkemailorusernameforadatabreach_sdk.feature.timeout_feature import CheckEMailOrUsernameForADataBreachTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: CheckEMailOrUsernameForADataBreachBaseFeature(),
+    "ratelimit": lambda: CheckEMailOrUsernameForADataBreachRatelimitFeature(),
+    "retry": lambda: CheckEMailOrUsernameForADataBreachRetryFeature(),
     "test": lambda: CheckEMailOrUsernameForADataBreachTestFeature(),
+    "timeout": lambda: CheckEMailOrUsernameForADataBreachTimeoutFeature(),
 }
 
 

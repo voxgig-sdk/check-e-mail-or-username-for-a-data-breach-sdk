@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { CheckEMailOrUsernameForADataBreachSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('DataBreachCheckEntity', async () => {
 
     const live = 'TRUE' === process.env.CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE
     for (const op of ['list']) {
-      if (maybeSkipControl(t, 'entityOp', 'data_breach_check.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'data_breach_check.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_DATA_BREACH_CHECK_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"date","req":true,"short":"Date of the breach in YYYY-MM format","type":"`$STRING`","index$":0},{"active":true,"name":"name","req":true,"short":"Name of the breached service or database","type":"`$STRING`","index$":1}],"name":"data_breach_check","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"example":"example@example.com","kind":"query","name":"check","orig":"check","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /public","json":"{\"operationId\":\"checkDataBreach\",\"parameters\":[{\"description\":\"The value to check for data breaches. Can be:\\n- Email address (e.g., example@example.com)\\n- Username (minimum 3 characters)\\n- Email hash (SHA256, truncated to 24 characters, e.g., 31c5543c1734d25c7206f5fd)\",\"example\":\"example@example.com\",\"in\":\"query\",\"name\":\"check\",\"required\":true,\"schema\":{\"examples\":[\"example@example.com\",\"31c5543c1734d25c7206f5fd\",\"username123\"],\"minLength\":3,\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"foundBreaches\":{\"summary\":\"Credential found in breaches\",\"value\":{\"fields\":[\"username\",\"first_name\",\"address\"],\"found\":3,\"sources\":[{\"date\":\"2016-07\",\"name\":\"Evony.com\"},{\"date\":\"2016-08\",\"name\":\"I-Dressup.com\"},{\"date\":\"2019-09\",\"name\":\"Zynga.com\"}],\"success\":true}},\"noBreaches\":{\"summary\":\"No breaches found\",\"value\":{\"fields\":[],\"found\":0,\"sources\":[],\"success\":true}}},\"schema\":{\"properties\":{\"fields\":{\"description\":\"List of data fields that were compromised in the breaches\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"found\":{\"description\":\"Number of data breaches found containing the searched credential\",\"minimum\":0,\"type\":\"integer\"},\"sources\":{\"description\":\"List of data breach sources where the credential was found\",\"items\":{\"properties\":{\"date\":{\"description\":\"Date of the breach in YYYY-MM format\",\"pattern\":\"^\\\\d{4}-\\\\d{2}$\",\"type\":\"string\"},\"name\":{\"description\":\"Name of the breached service or database\",\"type\":\"string\"}},\"required\":[\"name\",\"date\"],\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"description\":\"Indicates whether the request was successful\",\"type\":\"boolean\"}},\"required\":[\"success\",\"found\"],\"type\":\"object\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid input format\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/public","segments":[{"lit":"public"}],"select":{"exist":["check"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"data_breach_check","name__orig":"data_breach_check","Name":"DataBreachCheck","name_":"data_breach_check","name-":"data-breach-check","NAME":"DATA_BREACH_CHECK","index$":0}, {"active":true,"entity":"data_breach_check","key$":"BasicDataBreachCheckFlow","kind":"basic","name":"BasicDataBreachCheckFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"data_breach_check_ref01"}}],"index$":0}]}, 'DataBreachCheck')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_DATA_BREACH_CHECK_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_DATA_BREACH_CHECK_ENTID': idmap,
     'CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_DATA_BREACH_CHECK_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new CheckEMailOrUsernameForADataBreachSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

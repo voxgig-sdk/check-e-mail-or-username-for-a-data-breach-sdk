@@ -22,5 +22,166 @@
         "name": "s51"
       }
     }
+  },
+  "requests": {
+    "GET /public": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "checkDataBreach",
+        "parameters": [
+          {
+            "description": "The value to check for data breaches. Can be:\n- Email address (e.g., example@example.com)\n- Username (minimum 3 characters)\n- Email hash (SHA256, truncated to 24 characters, e.g., 31c5543c1734d25c7206f5fd)",
+            "example": "example@example.com",
+            "in": "query",
+            "name": "check",
+            "required": true,
+            "schema": {
+              "examples": [
+                "example@example.com",
+                "31c5543c1734d25c7206f5fd",
+                "username123"
+              ],
+              "minLength": 3,
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "foundBreaches": {
+                    "summary": "Credential found in breaches",
+                    "value": {
+                      "fields": [
+                        "username",
+                        "first_name",
+                        "address"
+                      ],
+                      "found": 3,
+                      "sources": [
+                        {
+                          "date": "2016-07",
+                          "name": "Evony.com"
+                        },
+                        {
+                          "date": "2016-08",
+                          "name": "I-Dressup.com"
+                        },
+                        {
+                          "date": "2019-09",
+                          "name": "Zynga.com"
+                        }
+                      ],
+                      "success": true
+                    }
+                  },
+                  "noBreaches": {
+                    "summary": "No breaches found",
+                    "value": {
+                      "fields": [],
+                      "found": 0,
+                      "sources": [],
+                      "success": true
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "fields": {
+                      "description": "List of data fields that were compromised in the breaches",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "found": {
+                      "description": "Number of data breaches found containing the searched credential",
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "sources": {
+                      "description": "List of data breach sources where the credential was found",
+                      "items": {
+                        "properties": {
+                          "date": {
+                            "description": "Date of the breach in YYYY-MM format",
+                            "pattern": "^\\d{4}-\\d{2}$",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Name of the breached service or database",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "date"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "description": "Indicates whether the request was successful",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "found"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid input format"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
