@@ -127,9 +127,9 @@ class Config {
 
     entity: {
       
-      data_breach_check: {
-      },
-
+        data_breach_check: {
+        },
+  
     }
   }
 
