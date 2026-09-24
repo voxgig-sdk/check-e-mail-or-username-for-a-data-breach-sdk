@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataBreachCheckEntity = void 0;
 const CheckEMailOrUsernameForADataBreachEntityBase_1 = require("../CheckEMailOrUsernameForADataBreachEntityBase");
-// TODO: needs Entity superclass
 class DataBreachCheckEntity extends CheckEMailOrUsernameForADataBreachEntityBase_1.CheckEMailOrUsernameForADataBreachEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

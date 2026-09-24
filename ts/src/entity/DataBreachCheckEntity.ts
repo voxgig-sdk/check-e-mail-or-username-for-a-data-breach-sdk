@@ -19,7 +19,6 @@ import type {
   DataBreachCheckListMatch,
 } from '../CheckEMailOrUsernameForADataBreachTypes'
 
-// TODO: needs Entity superclass
 class DataBreachCheckEntity extends CheckEMailOrUsernameForADataBreachEntityBase<DataBreachCheck> {
 
   constructor(client: CheckEMailOrUsernameForADataBreachSDK, entopts: any) {

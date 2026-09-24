@@ -99,15 +99,17 @@ module CheckEMailOrUsernameForADataBreachConfig
           "fields" => [
             {
               "name" => "date",
+              "title" => "Date",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "Date of the breach in YYYY-MM format",
-              "type" => "`$STRING`",
             },
             {
               "name" => "name",
+              "title" => "Name",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "Name of the breached service or database",
-              "type" => "`$STRING`",
             },
           ],
           "name" => "data_breach_check",
@@ -117,18 +119,6 @@ module CheckEMailOrUsernameForADataBreachConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "example@example.com",
-                        "kind" => "query",
-                        "name" => "check",
-                        "orig" => "check",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/public",
@@ -137,18 +127,31 @@ module CheckEMailOrUsernameForADataBreachConfig
                       "lit" => "public",
                     },
                   ],
+                  "parts" => [
+                    "public",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "check",
+                        "orig" => "check",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                        "example" => "example@example.com",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "check",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "public",
-                  ],
                 },
               ],
             },

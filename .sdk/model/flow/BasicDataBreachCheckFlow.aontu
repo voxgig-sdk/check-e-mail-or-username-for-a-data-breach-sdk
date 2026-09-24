@@ -1,0 +1,22 @@
+# BasicDataBreachCheckFlow
+
+main: kit: flow: BasicDataBreachCheckFlow:
+{
+  entity: "data_breach_check",
+  kind: "basic",
+  name: "BasicDataBreachCheckFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "data_breach_check_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDataBreachCheckFlow"
+}

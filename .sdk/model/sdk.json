@@ -24,28 +24,96 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "data_breach_check": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "date",
-              "req": true,
-              "short": "Date of the breach in YYYY-MM format",
-              "type": "`$STRING`"
+          "fields": {
+            "date": {
+              "a": true,
+              "h": "Date",
+              "n": "date",
+              "r": true,
+              "sh": "Date of the breach in YYYY-MM format",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": true,
-              "short": "Name of the breached service or database",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": true,
+              "sh": "Name of the breached service or database",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "data_breach_check",
           "op": {
             "list": {
@@ -53,40 +121,40 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /public",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "example@example.com",
-                        "kind": "query",
-                        "name": "check",
-                        "orig": "check",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "example@example.com",
+                        "k": "query",
+                        "n": "check",
+                        "or": "check",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /public",
-                    "json": "{\"operationId\":\"checkDataBreach\",\"parameters\":[{\"description\":\"The value to check for data breaches. Can be:\\n- Email address (e.g., example@example.com)\\n- Username (minimum 3 characters)\\n- Email hash (SHA256, truncated to 24 characters, e.g., 31c5543c1734d25c7206f5fd)\",\"example\":\"example@example.com\",\"in\":\"query\",\"name\":\"check\",\"required\":true,\"schema\":{\"examples\":[\"example@example.com\",\"31c5543c1734d25c7206f5fd\",\"username123\"],\"minLength\":3,\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"foundBreaches\":{\"summary\":\"Credential found in breaches\",\"value\":{\"fields\":[\"username\",\"first_name\",\"address\"],\"found\":3,\"sources\":[{\"date\":\"2016-07\",\"name\":\"Evony.com\"},{\"date\":\"2016-08\",\"name\":\"I-Dressup.com\"},{\"date\":\"2019-09\",\"name\":\"Zynga.com\"}],\"success\":true}},\"noBreaches\":{\"summary\":\"No breaches found\",\"value\":{\"fields\":[],\"found\":0,\"sources\":[],\"success\":true}}},\"schema\":{\"properties\":{\"fields\":{\"description\":\"List of data fields that were compromised in the breaches\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"found\":{\"description\":\"Number of data breaches found containing the searched credential\",\"minimum\":0,\"type\":\"integer\"},\"sources\":{\"description\":\"List of data breach sources where the credential was found\",\"items\":{\"properties\":{\"date\":{\"description\":\"Date of the breach in YYYY-MM format\",\"pattern\":\"^\\\\d{4}-\\\\d{2}$\",\"type\":\"string\"},\"name\":{\"description\":\"Name of the breached service or database\",\"type\":\"string\"}},\"required\":[\"name\",\"date\"],\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"description\":\"Indicates whether the request was successful\",\"type\":\"boolean\"}},\"required\":[\"success\",\"found\"],\"type\":\"object\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid input format\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/public",
-                  "segments": [
-                    {
-                      "lit": "public"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/public",
+                  "q": {
                     "exist": [
                       "check"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "public"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -515,13 +583,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

@@ -43,7 +43,7 @@ local databreachchecks, err = client:DataBreachCheck():list()
 if err then error(err) end
 
 for _, item in ipairs(databreachchecks) do
-  print(item["date"])
+  print(item)
 end
 ```
 

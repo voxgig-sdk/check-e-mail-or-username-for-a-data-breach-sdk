@@ -1,0 +1,70 @@
+# Entity: data_breach_check
+
+main: kit: entity: data_breach_check: {
+
+  alias: field: {}
+
+  fields: {
+    date: {
+      h: "Date"
+      n: "date"
+      r: true
+      sh: "Date of the breach in YYYY-MM format"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Name of the breached service or database"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "data_breach_check"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /public"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "example@example.com"
+                k: "query"
+                n: "check"
+                or: "check"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/public"
+          q: {
+            exist: [
+              "check"
+            ]
+          }
+          s: [
+            {
+              lit: "public"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
