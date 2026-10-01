@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk
+composer config repositories.check-e-mail-or-username-for-a-data-breach-sdk path ./check-e-mail-or-username-for-a-data-breach-sdk/php
+composer require voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk:@dev
+```
 
 
 ## Tutorial: your first API call

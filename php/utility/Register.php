@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 CheckEMailOrUsernameForADataBreachUtility::setRegistrar(function (CheckEMailOrUsernameForADataBreachUtility $u): void {
     $u->clean = [CheckEMailOrUsernameForADataBreachClean::class, 'call'];
+    $u->clean_add = [CheckEMailOrUsernameForADataBreachClean::class, 'add'];
+    $u->clean_explain = [CheckEMailOrUsernameForADataBreachDone::class, 'clean_explain'];
     $u->done = [CheckEMailOrUsernameForADataBreachDone::class, 'call'];
     $u->make_error = [CheckEMailOrUsernameForADataBreachMakeError::class, 'call'];
     $u->feature_add = [CheckEMailOrUsernameForADataBreachFeatureAdd::class, 'call'];

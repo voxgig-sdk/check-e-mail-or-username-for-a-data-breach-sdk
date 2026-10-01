@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 CheckEMailOrUsernameForADataBreachUtility.registrar = ->(u) {
   u.clean = CheckEMailOrUsernameForADataBreachUtilities::Clean
+  u.clean_add = CheckEMailOrUsernameForADataBreachUtilities::CleanAdd
+  u.clean_explain = CheckEMailOrUsernameForADataBreachUtilities::CleanExplain
   u.done = CheckEMailOrUsernameForADataBreachUtilities::Done
   u.make_error = CheckEMailOrUsernameForADataBreachUtilities::MakeError
   u.feature_add = CheckEMailOrUsernameForADataBreachUtilities::FeatureAdd
