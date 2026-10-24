@@ -79,6 +79,7 @@ module CheckEMailOrUsernameForADataBreachConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -151,6 +152,10 @@ module CheckEMailOrUsernameForADataBreachConfig
                     "exist" => [
                       "check",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

@@ -12,7 +12,7 @@ It exposes the API as capitalised, semantic **Entities** — e.g. `client:DataBr
 
 ## Install
 This package is not yet published to LuaRocks. Install it from the
-GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases)),
+GitHub release tag (`lua/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/tags)),
 or add the source directory to your `LUA_PATH`:
 
 ```bash
@@ -35,15 +35,16 @@ local client = sdk.new()
 
 ### 2. List databreachcheck records
 
-Entity operations return `(value, err)`. For `list`, `value` is the
-array of records itself — iterate it directly (there is no wrapper).
+Entity operations return `(value, err)`. For `list`, `value` is an
+array of entities, one per record — iterate it directly (there is no
+wrapper), and read each record with `data_get()`.
 
 ```lua
-local databreachchecks, err = client:DataBreachCheck():list()
+local databreachchecks, err = client:DataBreachCheck():list({ check = "example" })
 if err then error(err) end
 
 for _, item in ipairs(databreachchecks) do
-  print(item)
+  for k, val in pairs(item:data_get()) do print(k, val) end
 end
 ```
 
@@ -54,7 +55,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local databreachchecks, err = client:DataBreachCheck():list()
+local databreachchecks, err = client:DataBreachCheck():list({ check = "example" })
 if err then error(err) end
 ```
 
@@ -112,8 +113,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:DataBreachCheck():list()
--- result is the returned data; err is set on failure
+local result, err = client:DataBreachCheck():list({ check = "example" })
+-- result is an array of entities, one per mock record; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -199,7 +200,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
+| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria, one per record. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -209,18 +210,18 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(value, err)`. The `value` is the operation's
-data **directly** — there is no wrapper:
+Entity operations return `(value, err)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `list` | an array (`table`) of entity records |
+| `list` | an array (`table`) of entities, one per record |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local data_breach_check, err = client:DataBreachCheck():list()
+    local data_breach_check, err = client:DataBreachCheck():list({ check = "example" })
     if err then error(err) end
-    -- data_breach_check is the record list
+    -- data_breach_check is an array of entities, one per record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -263,7 +264,7 @@ Create an instance: `local data_breach_check = client:DataBreachCheck(nil)`
 #### Example: List
 
 ```lua
-local data_breach_checks, err = client:DataBreachCheck():list()
+local data_breach_checks, err = client:DataBreachCheck():list({ check = "example" })
 ```
 
 ## Features
@@ -429,7 +430,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local databreachcheck = client:DataBreachCheck()
-databreachcheck:list()
+databreachcheck:list({ check = "example" })
 
 -- databreachcheck:data_get() now returns the databreachcheck data from the last list
 -- databreachcheck:match_get() returns the last match criteria

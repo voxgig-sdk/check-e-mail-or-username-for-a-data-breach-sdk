@@ -51,6 +51,10 @@ main: kit: entity: data_breach_check: {
               "check"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "public"

@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -41,7 +41,7 @@ $client = new CheckEMailOrUsernameForADataBreachSDK();
 ```php
 try {
     // list() returns entity instances; data_get() reads each record.
-    $databreachchecks = $client->DataBreachCheck()->list();
+    $databreachchecks = $client->DataBreachCheck()->list(["check" => "example"]);
     foreach ($databreachchecks as $record) {
         $item = $record->data_get();
         echo $item["date"] . "\n";
@@ -59,7 +59,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $databreachchecks = $client->DataBreachCheck()->list();
+    $databreachchecks = $client->DataBreachCheck()->list(["check" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -133,7 +133,7 @@ $client = CheckEMailOrUsernameForADataBreachSDK::test();
 
 // list() returns entity instances (throws on error);
 // call data_get() for the mock record.
-$databreachcheck = $client->DataBreachCheck()->list();
+$databreachcheck = $client->DataBreachCheck()->list(["check" => "example"]);
 print_r(array_map(fn($item) => $item->data_get(), $databreachcheck));
 ```
 
@@ -221,7 +221,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -231,9 +231,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -285,8 +285,8 @@ Create an instance: `$data_breach_check = $client->DataBreachCheck();`
 #### Example: List
 
 ```php
-// list() returns an array of DataBreachCheck records (throws on error).
-$data_breach_checks = $client->DataBreachCheck()->list();
+// list() returns an array of DataBreachCheck entities, one per record (throws on error).
+$data_breach_checks = $client->DataBreachCheck()->list(["check" => "example"]);
 ```
 
 ## Features
@@ -452,7 +452,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $databreachcheck = $client->DataBreachCheck();
-$databreachcheck->list();
+$databreachcheck->list(["check" => "example"]);
 
 // $databreachcheck->data_get() now returns the databreachcheck data from the last list
 // $databreachcheck->match_get() returns the last match criteria

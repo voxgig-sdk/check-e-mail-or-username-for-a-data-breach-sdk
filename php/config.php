@@ -93,6 +93,7 @@ class CheckEMailOrUsernameForADataBreachConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -165,6 +166,10 @@ class CheckEMailOrUsernameForADataBreachConfig
                     'exist' => [
                       'check',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

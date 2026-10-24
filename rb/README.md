@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/check-e-mail-or-username-for-a-data-breach-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = CheckEMailOrUsernameForADataBreachSDK.new
 
 ```ruby
 begin
-  # list returns an Array of DataBreachCheck records — iterate directly.
-  databreachchecks = client.DataBreachCheck.list
+  # list returns an Array of DataBreachCheck entities, one per record; data_get reads the record.
+  databreachchecks = client.DataBreachCheck.list({ "check" => "example" })
   databreachchecks.each do |item|
-    puts "#{item["date"]}"
+    record = item.data_get
+    puts "#{record["date"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -60,7 +61,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  databreachchecks = client.DataBreachCheck.list()
+  databreachchecks = client.DataBreachCheck.list({ "check" => "example" })
 rescue => err
   warn "list failed: #{err}"
 end
@@ -128,10 +129,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = CheckEMailOrUsernameForADataBreachSDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-databreachcheck = client.DataBreachCheck.list()
-puts databreachcheck
+# list returns an Array of DataBreachCheck entities, one per mock record (raises on
+# error); data_get reads each record.
+databreachchecks = client.DataBreachCheck.list({ "check" => "example" })
+databreachchecks.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -215,7 +216,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -225,9 +226,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `CheckEMailOrUsernameForADataBreachError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`CheckEMailOrUsernameForADataBreachError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -278,8 +280,9 @@ Create an instance: `data_breach_check = client.DataBreachCheck`
 #### Example: List
 
 ```ruby
-# list returns an Array of DataBreachCheck records (raises on error).
-data_breach_checks = client.DataBreachCheck.list
+# list returns an Array of DataBreachCheck entities, one per record (raises on error).
+data_breach_checks = client.DataBreachCheck.list({ "check" => "example" })
+data_breach_checks.each { |item| puts item.data_get }
 ```
 
 ## Features
@@ -445,7 +448,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 databreachcheck = client.DataBreachCheck
-databreachcheck.list()
+databreachcheck.list({ "check" => "example" })
 
 # databreachcheck.data_get now returns the databreachcheck data from the last list
 # databreachcheck.match_get returns the last match criteria

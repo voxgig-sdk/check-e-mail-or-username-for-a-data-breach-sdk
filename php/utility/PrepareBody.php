@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // CheckEMailOrUsernameForADataBreach SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class CheckEMailOrUsernameForADataBreachPrepareBody
 {
     public static function call(CheckEMailOrUsernameForADataBreachContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (CheckEMailOrUsernameForADataBreachMedia::isRawRequest($ctx->point)) {
+                return CheckEMailOrUsernameForADataBreachMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

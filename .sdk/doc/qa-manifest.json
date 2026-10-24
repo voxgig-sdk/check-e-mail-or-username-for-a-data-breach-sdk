@@ -3,5 +3,14 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Date of the breach in YYYY-MM format",
+      "LeakCheck is a service that enables users and companies to ascertain whether their credentials have been compromised. By utilising this API, users can ascertain whether their email address or username has been involved in any data breach.",
+      "Name of the breached service or database",
+      "Production server",
+      "Successful response"
+    ]
+  }
 }

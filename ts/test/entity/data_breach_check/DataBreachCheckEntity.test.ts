@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { CheckEMailOrUsernameForADataBreachSDK, BaseFeature, stdutil } from '../../..'
+import { CheckEMailOrUsernameForADataBreachSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('DataBreachCheckEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('data_breach_check hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of CheckEMailOrUsernameForADataBreachSDK.test(offline).DataBreachCheck().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of CheckEMailOrUsernameForADataBreachSDK.test(offline).DataBreachCheck()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = CheckEMailOrUsernameForADataBreachSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.DataBreachCheck().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of CheckEMailOrUsernameForADataBreachSDK.test().DataBreachCheck().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new CheckEMailOrUsernameForADataBreachSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.DataBreachCheck().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.DataBreachCheck().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = CheckEMailOrUsernameForADataBreachSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.DataBreachCheck().list({"check":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.CHECK_E_MAIL_OR_USERNAME_FOR_A_DATA_BREACH_TEST_LIVE
@@ -51,7 +109,7 @@ describe('DataBreachCheckEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"date":{"a":true,"h":"Date","n":"date","r":true,"sh":"Date of the breach in YYYY-MM format","t":"`$STRING`","key$":"date","index$":0},"name":{"a":true,"h":"Name","n":"name","r":true,"sh":"Name of the breached service or database","t":"`$STRING`","key$":"name","index$":1}},"name":"data_breach_check","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /public","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"example@example.com","k":"query","n":"check","or":"check","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/public","q":{"exist":["check"]},"r":{},"s":[{"lit":"public"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"data_breach_check","name__orig":"data_breach_check","Name":"DataBreachCheck","name_":"data_breach_check","name-":"data-breach-check","NAME":"DATA_BREACH_CHECK","index$":0}, {"active":true,"entity":"data_breach_check","key$":"BasicDataBreachCheckFlow","kind":"basic","name":"BasicDataBreachCheckFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"data_breach_check_ref01"}}],"index$":0}]}, 'DataBreachCheck', {"GET /public":{"protocol":"http","parameters":[{"name":"check","in":"query","description":"The value to check for data breaches. Can be:\n- Email address (e.g., example@example.com)\n- Username (minimum 3 characters)\n- Email hash (SHA256, truncated to 24 characters, e.g., 31c5543c1734d25c7206f5fd)","required":true,"schema":{"type":"string","minLength":3,"examples":["example@example.com","31c5543c1734d25c7206f5fd","username123"]},"example":"example@example.com","index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"date":{"a":true,"h":"Date","n":"date","r":true,"sh":"Date of the breach in YYYY-MM format","t":"`$STRING`","key$":"date","index$":0},"name":{"a":true,"h":"Name","n":"name","r":true,"sh":"Name of the breached service or database","t":"`$STRING`","key$":"name","index$":1}},"name":"data_breach_check","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /public","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"example@example.com","k":"query","n":"check","or":"check","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/public","q":{"exist":["check"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"public"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"data_breach_check","name__orig":"data_breach_check","Name":"DataBreachCheck","name_":"data_breach_check","name-":"data-breach-check","NAME":"DATA_BREACH_CHECK","index$":0}, {"active":true,"entity":"data_breach_check","key$":"BasicDataBreachCheckFlow","kind":"basic","name":"BasicDataBreachCheckFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"data_breach_check_ref01"}}],"index$":0}]}, 'DataBreachCheck', {"GET /public":{"protocol":"http","parameters":[{"name":"check","in":"query","description":"The value to check for data breaches. Can be:\n- Email address (e.g., example@example.com)\n- Username (minimum 3 characters)\n- Email hash (SHA256, truncated to 24 characters, e.g., 31c5543c1734d25c7206f5fd)","required":true,"schema":{"type":"string","minLength":3,"examples":["example@example.com","31c5543c1734d25c7206f5fd","username123"]},"example":"example@example.com","index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('DataBreachCheckEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

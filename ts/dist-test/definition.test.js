@@ -19,8 +19,18 @@ const PLAN = [
             "check": "example@example.com"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "check"
+        ],
+        "queryArgs": [
+            {
+                "name": "check",
+                "wire": "check"
+            }
         ],
         "auth": null,
         "status": 200,
